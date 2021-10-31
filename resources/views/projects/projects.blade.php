@@ -71,6 +71,23 @@
                         </form>
                     </div>
                 </li>
+
+                <li class="nav-item">
+                    <div class="container">
+                        <form action="/filter" method="GET" role="filter">
+                            @csrf
+                            <div class="input-group">
+                                <input type="search" class="form-control" name="search"
+                                       placeholder="Search projects"> <span class="input-group-btn">
+					                <button type="submit" class="btn btn-default">
+						            <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+				                </span>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+
             </ul>
         </div>
     </div>

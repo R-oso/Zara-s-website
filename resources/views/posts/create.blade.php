@@ -111,6 +111,19 @@
                             <div class="label--desc">Upload your image that will be shown on the front page.</div>
                         </div>
                     </div>
+                    <div class="form-row">
+                        <div class="name">Choose your practice</div>
+                        <label class="value">
+                            <select class="input--style-6" name="practice_id">
+                                @foreach($practices as $practice)
+                                <option class="" value="{{$practice->id}}">
+                                    {{$practice->name}}
+                                </option>
+                                @endforeach
+                            </select>
+                        </label>
+                    </div>
+
                     <div class="card-footer">
                         <button class="btn btn--radius-2 btn--blue-2" type="submit">Upload</button>
                     </div>

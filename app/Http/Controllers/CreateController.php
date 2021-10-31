@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Practice;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -10,7 +11,8 @@ class CreateController extends Controller
 {
     public function index() {
 
-        return view('posts.create');
+        $practices = Practice::all();
+        return view('posts.create', compact('practices'));
     }
 
     public function store(Request $req) {
@@ -18,7 +20,7 @@ class CreateController extends Controller
         $req->validate([
             'image' => 'required',
             'title' => 'required',
-            'description' => 'required'
+            'description' => 'required',
         ]);
 
         $image = $req->file('image')->storePublicly('images', 'public');
@@ -30,7 +32,21 @@ class CreateController extends Controller
         $project->image = $image;
         $project->title = $req->title;
         $project->description = $req->description;
+        $project->practice_id = $req->practice_id;
         $project->save();
+
+        return redirect('/');
+    }
+
+    public function storePractice(Request $req) {
+
+        $req->validate([
+            'name' => 'required'
+        ]);
+
+        $practice = new Practice;
+        $practice->name = $req->name;
+        $practice->save();
 
         return redirect('/');
     }
