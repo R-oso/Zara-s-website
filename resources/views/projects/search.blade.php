@@ -61,8 +61,8 @@
                         <form action="/search" method="GET" role="search">
                             @csrf
                             <div class="input-group">
-                                <input type="search" class="form-control" name="search"
-                                       placeholder="Search projects"> <span class="input-group-btn">
+                                <input type="search" class="form-control" name="q"
+                                       placeholder="Search users"> <span class="input-group-btn">
 					                <button type="submit" class="btn btn-default">
 						            <span class="glyphicon glyphicon-search"></span>
                                     </button>
@@ -77,14 +77,6 @@
 </nav>
 
 <!-- Gallery -->
-
-@if(isset($_GET['search']))
-    <div>
-        <h1>
-            Dit zijn je zoekresultaten op '{{$search}}'
-        </h1>
-    </div>
-@endif
 
 <div class="row">
     @foreach($projects as $project)

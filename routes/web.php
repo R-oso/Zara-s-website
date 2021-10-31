@@ -33,3 +33,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('create', [CreateController::class, 'index'])->name('create');
 Route::post('create', [CreateController::class, 'store'])->name('store');
 
+Route::get('/search', [ProjectController::class, 'search'])->name('search');
+

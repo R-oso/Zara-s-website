@@ -42,4 +42,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function likes() {
+        return $this->hasMany('App\Models\Like', 'user_id');
+    }
+
 }

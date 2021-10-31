@@ -49,11 +49,12 @@
         <div class="navbar-collapse collapse dual-nav w-50 order-2">
             <ul class="nav navbar-nav ml-auto">
                 @auth
-                <li class="nav-item"><a class="nav-link" href=""><i class="fa fa-twitter"></i>My profile</a></li>
-                <li class="nav-item"><a class="nav-link" href=""><i class="fa fa-github"></i></a></li>
+                    <li class="nav-item"><a class="nav-link" href=""><i class="fa fa-twitter"></i>My profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href=""><i class="fa fa-github"></i></a></li>
 
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </a>
 
@@ -84,20 +85,26 @@
         />
         <p class="mb">{{$projectDetails->title}}</p>
         <p class="mb">{{$projectDetails->description}}</p>
-        <small class="float-right">
-            <span title="Likes" id="saveLikesDislikes" data-type="likes" data-post="{{ $projectDetails->id }}"
-            class="btn-small mr-2"> Like
-{{--                <span class="like-count"> {{ $projectDetails->likes() }}</span>--}}
-            </span>
+        <div class="float-right">
 
-            <span title="Dislikes" id="saveLikesDislikes" data-type="dislike" data-post="{{ $projectDetails->id }}"
-                  class="btn-small mr-2"> Dislike
+            <form method="post" action="/projects/{{ $projectDetails->id }}/like">
+            @csrf
+            <button title="Likes" id="saveLikesDislikes" data-type="likes" data-post="{{ $projectDetails->id }}"
+                  class="btn-small mr-2"> Like
+            </button>
+
+            </form>
+            <form method="post" action="/projects/{{ $projectDetails->id }}/like">
+            @csrf
+             <button title="Dislikes" id="saveLikesDislikes" data-type="dislike" data-post="{{ $projectDetails->id }}"
+                   class="btn-small mr-2"> Dislike
 {{--                <span class="like-count"> {{ $projectDetails->dislikes() }}</span>--}}
-            </span>
-        </small>
+            </button>
+            </form>
+
+        </div>
     </div>
 </div>
-
 
 
 </body>
