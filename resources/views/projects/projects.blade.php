@@ -19,7 +19,7 @@
 
 <body class="antialiased">
 <!--NAVBAR STARTING-->
-<nav class="navbar navbar-light navbar-expand-md bg-transparent justify-content-between sticky-top">
+<nav class="navbar navbar-light navbar-expand-md bg-transparent justify-content-between">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-nav">
             <span class="navbar-toggler-icon"></span>
@@ -106,18 +106,22 @@
     </div>
 @endif
 
-<div class="row">
+<div class="container-fluid">
+    <div class="row">
     @foreach($projects as $project)
-        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 ml-4">
+        <div class="col-md-4">
             <img
                 src="{{asset('storage/' . $project->image)}}"
-                class="w-100 shadow-1-strong rounded mb-4"
+                class="img-fluid mt-5"
                 alt=""
             />
-            <a href="{{route('about', $project->id)}}"><p class="mb">{{$project->title}}</p></a>
+            <a href="{{route('about', $project->id)}}"><p class="mb font-weight-bolder font-italic text-black-50 text-center mt-2 mb-3">
+                    {{$project->title}}</p></a>
         </div>
     @endforeach
+    </div>
 </div>
+
 
 
 </body>
