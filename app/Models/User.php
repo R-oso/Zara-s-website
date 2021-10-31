@@ -47,4 +47,6 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Like', 'user_id');
     }
 
+
+
 }

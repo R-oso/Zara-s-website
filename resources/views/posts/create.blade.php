@@ -111,6 +111,7 @@
                             <div class="label--desc">Upload your image that will be shown on the front page.</div>
                         </div>
                     </div>
+
                     <div class="form-row">
                         <div class="name">Choose your practice</div>
                         <label class="value">

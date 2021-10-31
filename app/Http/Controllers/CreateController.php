@@ -6,16 +6,20 @@ use App\Models\Practice;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CreateController extends Controller
 {
-    public function index() {
+    public function index()
+    {
 
         $practices = Practice::all();
         return view('posts.create', compact('practices'));
+
     }
 
-    public function store(Request $req) {
+    public function store(Request $req)
+    {
 
         $req->validate([
             'image' => 'required',
@@ -38,7 +42,8 @@ class CreateController extends Controller
         return redirect('/');
     }
 
-    public function storePractice(Request $req) {
+    public function storePractice(Request $req)
+    {
 
         $req->validate([
             'name' => 'required'

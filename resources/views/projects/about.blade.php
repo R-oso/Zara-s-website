@@ -83,23 +83,25 @@
             class="row-md-4  img-fluid w-100 shadow-1-strong rounded mb-4"
             alt=""
         />
-        <p class="mb">{{$projectDetails->title}}</p>
-        <p class="mb">{{$projectDetails->description}}</p>
+        <p class="mb">{{ $projectDetails->title }}</p>
+        <p class="mb">{{ $projectDetails->description }}</p>
+        <p class="mb">{{ $projectPractice }}</p>
         <div class="float-right">
 
             <form method="post" action="/projects/{{ $projectDetails->id }}/like">
-            @csrf
-            <button title="Likes" id="saveLikesDislikes" data-type="likes" data-post="{{ $projectDetails->id }}"
-                  class="btn-small mr-2"> Like
-            </button>
+                @csrf
+                <button title="Likes" id="saveLikesDislikes" data-type="likes" data-post="{{ $projectDetails->id }}"
+                        class="btn-small mr-2"> Like
+                </button>
 
             </form>
             <form method="post" action="/projects/{{ $projectDetails->id }}/like">
-            @csrf
-             <button title="Dislikes" id="saveLikesDislikes" data-type="dislike" data-post="{{ $projectDetails->id }}"
-                   class="btn-small mr-2"> Dislike
-{{--                <span class="like-count"> {{ $projectDetails->dislikes() }}</span>--}}
-            </button>
+                @csrf
+                <button title="Dislikes" id="saveLikesDislikes" data-type="dislike"
+                        data-post="{{ $projectDetails->id }}"
+                        class="btn-small mr-2"> Dislike
+                    {{--                <span class="like-count"> {{ $projectDetails->dislikes() }}</span>--}}
+                </button>
             </form>
 
         </div>

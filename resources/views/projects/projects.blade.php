@@ -54,7 +54,6 @@
                     <li class="nav-item"><a class="nav-link" href="{{ url('/home') }}"><i class="fa fa-twitter"></i>My
                             profile</a></li>
                 @endauth
-                <li class="nav-item"><a class="nav-link" href=""><i class="fa fa-github"></i></a></li>
 
                 <li class="nav-item">
                     <div class="container">
@@ -71,23 +70,27 @@
                         </form>
                     </div>
                 </li>
-
+                @if(isset($practices))
                 <li class="nav-item">
                     <div class="container">
                         <form action="/filter" method="GET" role="filter">
-                            @csrf
-                            <div class="input-group">
-                                <input type="search" class="form-control" name="search"
-                                       placeholder="Search projects"> <span class="input-group-btn">
-					                <button type="submit" class="btn btn-default">
-						            <span class="glyphicon glyphicon-search"></span>
-                                    </button>
-				                </span>
+                            <label class="value">
+                                <select class="input--style-6" name="practice_id">
+                                    @foreach($practices as $practice)
+                                        <option class="" value="{{$practice->id}}">
+                                            {{$practice->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </label>
+
+                            <div class="card-footer">
+                                <button class="btn btn--radius-2 btn--blue-2" type="submit">Upload</button>
                             </div>
                         </form>
                     </div>
                 </li>
-
+                @endif
             </ul>
         </div>
     </div>

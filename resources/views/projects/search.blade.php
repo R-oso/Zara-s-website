@@ -61,7 +61,7 @@
                         <form action="/search" method="GET" role="search">
                             @csrf
                             <div class="input-group">
-                                <input type="search" class="form-control" name="q"
+                                <input type="search" class="form-control" name="search"
                                        placeholder="Search users"> <span class="input-group-btn">
 					                <button type="submit" class="btn btn-default">
 						            <span class="glyphicon glyphicon-search"></span>

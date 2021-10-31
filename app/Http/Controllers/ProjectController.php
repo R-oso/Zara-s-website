@@ -14,18 +14,22 @@ class ProjectController extends Controller
     {
 
         //Collect product data
-        $title = 'My very first title';
         $projects = Project::all();
+        $practices = Practice::all();
 
-        return view('projects/projects', compact('title', 'projects'))
+        return view('projects/projects', compact('projects', 'practices'))
             ->with('likes', Like::all());
     }
 
-    public function details(Request $req, $id)
+    public function details($id)
     {
         //Retrieve practice and project id's
         $projectDetails = Project::find($id);
-        $projectPractice = Practice::find($id);
+        $practiceId = DB::table('projects')->where('id', '=', $id)->value('practice_id');
+
+        //Retrieve correct practice name
+        $projectPractice = DB::table('practices')->where('id', '=', $practiceId)->value('name');
+
 
         return view('projects/about', compact('projectDetails', 'projectPractice'));
     }
@@ -34,8 +38,13 @@ class ProjectController extends Controller
 
         $search = $req->get('search');
         $projects = DB::table('projects')->where('title', 'like', '%'.$search.'%')
-            ->simplePaginate('3');
+            ->simplePaginate('10');
 
         return view('projects.projects', compact('projects', 'search'));
+    }
+
+    public function filter(Request $req) {
+
+        echo('poop');
     }
 }
