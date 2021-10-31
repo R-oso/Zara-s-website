@@ -4,6 +4,7 @@
 //use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CreateController;
+use App\Http\Controllers\PracticeController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -22,16 +23,26 @@ use Illuminate\Support\Facades\Route;
 //Enable Auth routes
 Auth::routes();
 
-//Get to the project and route to details function
+//ProjectController
 Route::get('/', [ProjectController::class, 'index'])->name('project');
 Route::get('/about{id}', [ProjectController::class, 'details'])->name('about');
+Route::get('/search', [ProjectController::class, 'search'])->name('search');
+Route::get('/filter', [ProjectController::class, 'filter'])->name('filter');
 
-//Route to function 'index' in HomeController
+//HomeController
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//Route to the functions 'index' and 'upload' in CreateController
-Route::get('create', [CreateController::class, 'index'])->name('create');
-Route::post('create', [CreateController::class, 'store'])->name('store');
+//Admin only
+Route::middleware(['protectedPages'])->group(function () {
 
-Route::get('/search', [ProjectController::class, 'search'])->name('search');
+    //CreateController
+    Route::get('create', [CreateController::class, 'index'])->name('create');
+    Route::post('create', [CreateController::class, 'store'])->name('store');
+    Route::post('practice', [CreateController::class, 'storePractice'])->name('storePractice');
+
+    //PracticeController
+    Route::get('practice', [PracticeController::class, 'index'])->name('practice');
+
+});
+
 
