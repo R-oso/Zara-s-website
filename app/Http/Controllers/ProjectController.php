@@ -43,8 +43,13 @@ class ProjectController extends Controller
         return view('projects.projects', compact('projects', 'search'));
     }
 
-    public function filter(Request $req) {
+    public function filter(Request $req, Practice $practice) {
 
-        echo('poop');
+        $filter = $req->get('practice_id');
+
+        $projects = DB::table('projects')->where('practice_id', '=', $filter)
+            ->simplePaginate('10');
+
+        return view('projects.projects', compact('projects', 'filter'));
     }
 }

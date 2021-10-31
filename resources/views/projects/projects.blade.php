@@ -74,8 +74,8 @@
                 <li class="nav-item">
                     <div class="container">
                         <form action="/filter" method="GET" role="filter">
-                            <label class="value">
-                                <select class="input--style-6" name="practice_id">
+                            <label class="value input-group">
+                                <select class="input--style-6 form-control" name="practice_id">
                                     @foreach($practices as $practice)
                                         <option class="" value="{{$practice->id}}">
                                             {{$practice->name}}
@@ -84,8 +84,8 @@
                                 </select>
                             </label>
 
-                            <div class="card-footer">
-                                <button class="btn btn--radius-2 btn--blue-2" type="submit">Upload</button>
+                            <div>
+                                <button class="btn btn--radius-2 btn-dark mt-2 ml-4" type="submit">Filter</button>
                             </div>
                         </form>
                     </div>

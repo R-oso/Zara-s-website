@@ -25,6 +25,7 @@ class CreateController extends Controller
             'image' => 'required',
             'title' => 'required',
             'description' => 'required',
+            'practice_id' => 'required'
         ]);
 
         $image = $req->file('image')->storePublicly('images', 'public');

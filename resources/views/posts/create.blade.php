@@ -41,10 +41,6 @@
                         </li>
                     @endif
                 @endguest
-
-                @auth
-                    <a class="btn btn-primary" href="{{ url('/create') }}" role="button">Create new project</a>
-                @endauth
             </ul>
         </div>
         <a href="/" class="navbar-brand mx-auto d-block text-center order-0 order-md-1 w-25">MARIA</a>
@@ -104,7 +100,7 @@
                         <div class="name">Upload image</div>
                         <div class="value">
                             <label class="input-group js-input-file">
-                                <input class="input-file" type="file" name="image" id="file" accept="image/png, image/jpeg">
+                                <input class="input-file" type="file" name="image" id="file" accept="image/png, image/JPEG, image/jpg">
                                 <label class="label--file" for="file">Choose image</label>
                                 <span class="input-file__info">No image chosen</span>
                             </label>

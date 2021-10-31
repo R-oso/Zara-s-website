@@ -49,7 +49,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route('practice') }}" class="btn btn-primary btn-lg" role="button"
+                        <a href="{{ route('practice') }}" class="btn btn-primary btn-lg ml-4" role="button"
                            aria-disabled="true">Create new practice</a>
                     </li>
                 @endauth
