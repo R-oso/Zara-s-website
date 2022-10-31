@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditProfileRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use function React\Promise\all;
 
 class HomeController extends Controller
 {
@@ -11,8 +15,8 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
+
         $this->middleware('auth');
     }
 
@@ -21,8 +25,27 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
+    public function index() {
+
         return view('home');
+    }
+
+    public function edit() {
+
+        return view('edit_profile');
+    }
+
+    public function update(Request $req) {
+
+        $req->validate([
+            'name' => 'required',
+            'email' => 'required'
+        ]);
+
+        $input = $req->except(['_token']);
+        $id = Auth::user()->id;
+        User::where('id','=', $id)->update($input);
+
+        return redirect();
     }
 }

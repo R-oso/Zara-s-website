@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\authCheck;
 use App\Models\Practice;
 use App\Models\Project;
 use App\Models\User;
@@ -28,7 +29,8 @@ class CreateController extends Controller
             'practice_id' => 'required'
         ]);
 
-        $image = $req->file('image')->storePublicly('images', 'public');
+//        $image = $req->file('image')->storePublicly('images', 'public');
+        $image = $req->file('image')->move('images/');
 
         //<!----To edit filename in database >!----
         //$image = str_replace('images/', '', $image);
@@ -45,7 +47,6 @@ class CreateController extends Controller
 
     public function storePractice(Request $req)
     {
-
         $req->validate([
             'name' => 'required'
         ]);
