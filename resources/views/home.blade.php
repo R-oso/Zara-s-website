@@ -14,10 +14,18 @@
                         </div>
                     @endif
 
-                    @if (\Auth::user()->role > 0)
+                    @if (Auth::user()->role > 0)
                     {{ __('Welcome admin!') }}
                     @else
                     {{ __('Welcome, you are logged in!') }}
+                    @endif
+
+                    <p class="h2 mt-3">
+                        <a href="{{ route('edit') }}">Edit your profile</a>
+                    </p>
+
+                    @if (Auth::user()->role == 0)
+                    <p class="h2 mt-3 table-hover">Favorites</p>
                     @endif
 
                 </div>

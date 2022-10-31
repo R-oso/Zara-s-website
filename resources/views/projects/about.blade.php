@@ -77,35 +77,34 @@
 </nav>
 
 <div class="container h-100">
+    @if(!empty($liked))
+        <p class="mb">{{$liked}}</p>
+    @endif
+
+    @if(!empty($disliked))
+        <p class="mb">{{$disliked}}</p>
+    @endif
+
     <div class="col justify-content-center">
         <img
-            src="{{asset('storage/' . $projectDetails->image)}}"
+            src="{{$projectDetails->image}}"
             class="row-md-4  img-fluid w-100 shadow-1-strong rounded mb-4"
             alt=""
         />
         <p class="mb">{{ $projectDetails->title }}</p>
         <p class="mb">{{ $projectDetails->description }}</p>
-        <p class="mb">{{ $projectPractice }}</p>
+        <p class="mb practice_text">{{ $projectPractice }}</p>
         <div class="float-right">
 
-            <form method="post" action="/projects/{{ $projectDetails->id }}/like">
+            <form method="post" action="{{route('favorite', $projectDetails->id)}}">
                 @csrf
-                <button title="Likes" id="saveLikesDislikes" data-type="likes" data-post="{{ $projectDetails->id }}"
-                        class="btn-small mr-2"> Like
+                <button title="Favorite" id="saveLikesDislikes" data-type="favorites" data-post="{{ $projectDetails->id }}"
+                        class="btn-small mr-2"> Favorite
                 </button>
 
             </form>
-            <form method="post" action="/projects/{{ $projectDetails->id }}/like">
-                @csrf
-                <button title="Dislikes" id="saveLikesDislikes" data-type="dislike"
-                        data-post="{{ $projectDetails->id }}"
-                        class="btn-small mr-2"> Dislike
-                    {{--                <span class="like-count"> {{ $projectDetails->dislikes() }}</span>--}}
-                </button>
-            </form>
-
+            </div>
         </div>
-    </div>
 </div>
 
 

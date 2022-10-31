@@ -41,20 +41,14 @@
                 @endguest
 
                 @auth
-                    <li class="nav-item">
-                        <a href="{{ url('/home') }}" class="nav-link">Home</a>
-                    </li>
-            @endauth
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/home') }}"><i class="fa fa-twitter"></i>My
+                                profile</a></li>
+                @endauth
         </div>
 
         <a href="/" class="navbar-brand mx-auto d-block text-center order-0 order-md-1 w-25">MARIA</a>
         <div class="navbar-collapse collapse dual-nav w-50 order-2">
             <ul class="nav navbar-nav ml-auto">
-                @auth
-                    <li class="nav-item"><a class="nav-link" href="{{ url('/home') }}"><i class="fa fa-twitter"></i>My
-                            profile</a></li>
-                @endauth
-
                 <li class="nav-item">
                     <div class="container">
                         <form action="/search" method="GET" role="search">
@@ -100,7 +94,7 @@
 
 @if(isset($_GET['search']))
     <div>
-        <h1>
+        <h1 class="search_result">
             Dit zijn je zoekresultaten op '{{$search}}'
         </h1>
     </div>
@@ -110,13 +104,24 @@
     <div class="row">
     @foreach($projects as $project)
         <div class="col-md-4">
-            <img
-                src="{{asset('storage/' . $project->image)}}"
-                class="img-fluid mt-5"
-                alt=""
-            />
+            <img src="{{$project->image}}" class="img-fluid mt-5" alt=""/>
             <a href="{{route('about', $project->id)}}"><p class="mb font-weight-bolder font-italic text-black-50 text-center mt-2 mb-3">
                     {{$project->title}}</p></a>
+
+            <form method="POST" action="/projects/{{$project->id}}/favorite">
+                @csrf
+                <button class="btn--blue" type="submit">Favorite</button>
+            </form>
+            
+            @auth
+                @if (Auth::user()->role > 0)
+                <form action='/about{{$project->id}}/destroy' method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                </form>
+                @endif
+            @endauth
         </div>
     @endforeach
     </div>

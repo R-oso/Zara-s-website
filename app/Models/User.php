@@ -43,8 +43,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function likes() {
-        return $this->hasMany('App\Models\Like', 'user_id');
+    public function favorites() {
+        return $this->belongsToMany('App\Models\Favorite', 'favorites', 'user_id', 'project_id');
     }
 
 

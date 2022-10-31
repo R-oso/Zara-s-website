@@ -2,8 +2,10 @@
 
 namespace App\Traits;
 
+use App\Models\Like;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 trait Likeable
 {
@@ -19,11 +21,16 @@ trait Likeable
 
     }
 
-    public function like()
+    public function Likes() {
+
+        return $this->hasMany(Like::class, 'project_id');
+    }
+
+    public function like($user = null)
     {
         $this->likes()->updateOrCreate(
             [
-                'user_id' => 1
+                'user_id' => $user ? $user->id : auth()->id(),
             ],
             [
                 'liked' => true
@@ -31,11 +38,11 @@ trait Likeable
         );
     }
 
-    public function dislike()
+    public function dislike($user = null)
     {
         $this->likes()->updateOrCreate(
             [
-                'user_id' => auth()->id()
+                'user_id' => $user ? $user->id : auth()->id(),
             ],
             [
                 'liked' => false
@@ -60,10 +67,10 @@ trait Likeable
             ->count();
     }
 
-    public function likes()
-    {
-        return $this->hasMany('App\Models\Like', 'project_id');
-    }
+//    public function likes()
+//    {
+//        return $this->hasMany('App\Models\Like', 'project_id');
+//    }
 
 }
 

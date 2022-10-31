@@ -43,15 +43,17 @@
                 @endguest
 
                 @auth
-                    <li class="nav-item">
-                        <a href="{{ route('create') }}" class="btn btn-primary btn-lg" role="button"
-                           aria-disabled="true">Create new project</a>
-                    </li>
+                    @if (\Auth::user()->role > 0)
+                        <li class="nav-item">
+                            <a href="{{ route('create') }}" class="btn btn-primary btn-lg" role="button"
+                               aria-disabled="true">Create new project</a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a href="{{ route('practice') }}" class="btn btn-primary btn-lg ml-4" role="button"
-                           aria-disabled="true">Create new practice</a>
-                    </li>
+                        <li class="nav-item">
+                            <a href="{{ route('practice') }}" class="btn btn-primary btn-lg ml-4" role="button"
+                               aria-disabled="true">Create new practice</a>
+                        </li>
+                    @endif()
                 @endauth
             </ul>
         </div>
