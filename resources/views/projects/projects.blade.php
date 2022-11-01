@@ -108,17 +108,12 @@
             <a href="{{route('about', $project->id)}}"><p class="mb font-weight-bolder font-italic text-black-50 text-center mt-2 mb-3">
                     {{$project->title}}</p></a>
 
-            <form method="POST" action="/projects/{{$project->id}}/favorite">
-                @csrf
-                <button class="btn--blue" type="submit">Favorite</button>
-            </form>
-            
             @auth
                 @if (Auth::user()->role > 0)
                 <form action='/about{{$project->id}}/destroy' method="POST">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-danger" type="submit">Delete</button>
+                    <button class="btn bg-secondary mb-5" type="submit">Delete</button>
                 </form>
                 @endif
             @endauth
