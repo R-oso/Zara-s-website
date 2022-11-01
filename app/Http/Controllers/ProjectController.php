@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+
 class ProjectController extends Controller
 {
     public function index()
@@ -65,6 +66,10 @@ class ProjectController extends Controller
     public function favorite(int $id) {
 
         $user_id = Auth::id();
+
+        if (!Auth::check()){
+            return redirect('/login');
+        }
 
         if (DB::table('favorites')->where('project_id', '=', $id)->doesntExist() && DB::table('favorites')->where('user_id', '=', $user_id)->doesntExist()) {
             Auth::user()->favorites()->attach($id);
