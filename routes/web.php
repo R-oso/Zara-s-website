@@ -30,7 +30,6 @@ Route::get('/filter', [ProjectController::class, 'filter'])->name('filter');
 
 //FavoritesController
 Route::post('/about{id}/favorite/', [ProjectController::class, 'favorite'])->name('favorite');
-//Route::post('/projects/{id}/favorite', [App\Http\Controllers\ProjectFavoritesController::class, 'destroy']);
 
 //HomeController
 Route::get('/home', [HomeController::class, 'index'])->name('home');
