@@ -6,6 +6,7 @@ use App\Http\Requests\EditProfileRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use function React\Promise\all;
 
 class HomeController extends Controller
@@ -32,7 +33,9 @@ class HomeController extends Controller
 
     public function edit() {
 
-        return view('edit_profile');
+        $user_id = Auth::id();
+        $favorites = DB::table('favorites')->where('user_id', '=', $user_id)->count();
+        return view('edit_profile', compact('favorites'));
     }
 
     public function update(Request $req) {
