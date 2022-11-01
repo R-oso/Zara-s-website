@@ -61,6 +61,16 @@
 
                 <form method="POST" action="update">
                     @csrf
+                    @if($favorites >= 3)
+                        <div class="alert">
+                            You have liked 3 or more projects! Change your profile picture here.
+                        </div>
+                        <div class="form-group">
+                            <label for="image"></label>
+                            <input type="image">
+                        </div>
+                    @endif
+
                     <div class="form-group alert">
                         <label for="name">Name</label>
                         <input type="text" class="form-control-lg bg-dark text-white" name="name" id="name" placeholder="Your new username">
@@ -71,7 +81,9 @@
                         <input type="text" class="form-control-lg bg-dark text-white" name="email" id="email" placeholder="Your new email address">
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <div class="alert">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
 
                     <div class="alert">
                         Forgot your password?
